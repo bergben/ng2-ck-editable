@@ -8,8 +8,12 @@
     "moduleResolution": "node",
     "declaration": true
   },
-  "files": [
-    "./ng2-page-transition.ts",
-    "./src/ng2-page-transition.component.ts"
+  "include": [
+    "./ng2-ck-editable.ts",
+      "src/**/*"
+  ],
+  "exclude": [
+      "node_modules",
+      "**/*.spec.ts"
   ]
 }

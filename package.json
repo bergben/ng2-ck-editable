@@ -1,18 +1,17 @@
 
 {
-  "name": "ng2-page-transition",
-  "version": "0.1.1",
-  "description": "Simple Angular2 component that creates a page transition animation on route changes",
+  "name": "ng2-ck-editable",
+  "version": "0.0.0",
+  "description": "Angular 2 directive to make any div editable using a CKEditor.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bergben/ng2-page-transition.git"
+    "url": "git+https://github.com/bergben/ng2-ck-editable.git"
   },
   "license": "MIT",
-  "main": "ng2-page-transition.js",
-  "typings": "ng2-page-transition.d.ts",
+  "main": "ng2-ck-editable.js",
+  "typings": "ng2-ck-editable.d.ts",
   "scripts": {
     "lint": "tslint src/**/*.ts && tslint *.ts",
-    "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": {
@@ -22,17 +21,18 @@
   "keywords": [
     "angular",
     "angular2",
-    "scrolling",
-    "scrollimate",
-    "animations"
+    "CKEditor",
+    "editable",
+    "administration"
   ],
+  "dependencies": {
+    "ng2-ckeditor": "^1.1.4"
+  },
   "peerDependencies": {
-    "@angular/router": "^3.0.0",
-    "@angular/common": "^2.0.0",
-    "@angular/compiler": "^2.0.0",
     "@angular/core": "^2.0.0",
+    "@angular/common": "^2.0.0",
     "@angular/platform-browser": "^2.0.0",
-    "@angular/platform-browser-dynamic": "^2.0.0"
+    "rxjs": "^5.0.0-beta.12"
   },
   "devDependencies": {
     "@angular/router": "3.0.0",
@@ -43,15 +43,15 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@types/core-js": "^0.9.0",
     "@types/node": "^6.0.38",
+    "rxjs": "5.0.0-beta.12",
     "core-js": "^2.4.1",
     "reflect-metadata": "^0.1.3",
-    "rxjs": "5.0.0-beta.12",
     "zone.js": "^0.6.21",
     "tslint": "^3.4.0",
     "typescript": "2.0.3"
   },
   "bugs": {
-    "url": "https://github.com/bergben/ng2-page-transition/issues"
+    "url": "https://github.com/bergben/ng2-ck-editable/issues"
   },
-  "homepage": "https://github.com/bergben/ng2-page-transition#readme"
+  "homepage": "https://github.com/bergben/ng2-ck-editable#readme"
 }
