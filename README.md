@@ -23,6 +23,8 @@ import { MyComponent } from './my.component';
 })
 export class MyAppModule {}
 ```
+### Styles
+This library uses <a href="https://v4-alpha.getbootstrap.com/getting-started/download/#package-managers">Bootstrap 4</a>, so make sure to install that if you want the default styling to apply.
 
 ## Usage
 ### Use it in your template
