@@ -1,15 +1,15 @@
 
 {
   "name": "ng2-ck-editable",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Angular 2 directive to make any div editable using a CKEditor.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bergben/ng2-ck-editable.git"
   },
   "license": "MIT",
-  "main": "ng2-ck-editable.js",
-  "typings": "ng2-ck-editable.d.ts",
+  "main": "build/ng2-ck-editable.js",
+  "typings": "build/ng2-ck-editable.d.ts",
   "scripts": {
     "lint": "tslint src/**/*.ts && tslint *.ts",
     "test": "echo \"Error: no test specified\" && exit 1"

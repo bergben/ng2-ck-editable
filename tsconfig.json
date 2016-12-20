@@ -5,6 +5,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": false,
+    "outDir": "build",
     "moduleResolution": "node",
     "declaration": true
   },
