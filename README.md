@@ -64,7 +64,7 @@ By default the component buttons are in English: "Save", "Edit" and "Cancel". Yo
 ### i18n - Default wording per element
 You can overwrite the default wording for the buttons: 
 ```html
-    <div [ck-editable]="{key:'myPerfectKey'}" [ck-editable-cancel-text]="'custom text'" [ck-editable-save-text]="'save text'" [ck-editable-edit-text]="'custom edit'">
+    <div [ck-editable]="{key:'myPerfectKey'}" [cancel-text]="'custom text'" [save-text]="'save text'" [edit-text]="'custom edit'">
 ```
 
 ### Button styling
