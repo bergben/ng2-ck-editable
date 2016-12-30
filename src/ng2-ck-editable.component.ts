@@ -25,7 +25,7 @@ export class Ng2CKEditableComponent implements OnInit {
   @Input('save-text') saveText: string;
   @Input('cancel-text') cancelText: string;
   @Input('edit-text') editText: string;
-  @Input('config') config: any={};
+  @Input('config') config: any;
 
   @Output('ck-editable') output: EventEmitter<any> = new EventEmitter();
 
