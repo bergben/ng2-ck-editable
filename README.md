@@ -67,9 +67,14 @@ You can overwrite the default wording for the buttons:
     <div [ck-editable]="{key:'myPerfectKey'}" [cancel-text]="'custom text'" [save-text]="'save text'" [edit-text]="'custom edit'">
 ```
 
+### CKEditor config
+You can pass the config object for the CKEditor like so:
+```html
+    <div [ck-editable]="{key:'myPerfectKey'}" [config]="{uiColor: '#99000'}">
+```
+
 ### Button styling
 The buttons each have a class 'ck-editable-save', 'ck-editable-cancel' and 'ck-editable-edit' which you can use to apply styling to the buttons.
 
 ## To-do
- - Pass config options for CKEditor through
  - Provide a demo
