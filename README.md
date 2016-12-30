@@ -72,6 +72,14 @@ You can pass the config object for the CKEditor like so:
 ```html
     <div [ck-editable]="{key:'myPerfectKey'}" [config]="{uiColor: '#99000'}">
 ```
+or globally using 
+```TypeScript
+    Ng2CKEditableModule.forRoot(
+      {
+        config:{uiColor: '#99000'}
+      }
+    ),
+```
 
 ### Button styling
 The buttons each have a class 'ck-editable-save', 'ck-editable-cancel' and 'ck-editable-edit' which you can use to apply styling to the buttons.

@@ -50,6 +50,9 @@ export class Ng2CKEditableComponent implements OnInit {
     if (this.cancelText === "" || this.cancelText === undefined) {
       this.cancelText = this.defaultOptions.cancelText;
     }
+    if (typeof this.config ===  'undefined') {
+      this.config = this.defaultOptions.config;
+    }
     this.CKEditableContentElement = this.CKEditableContent.element.nativeElement;
     this.CKEditableContentElement.style.cursor = "text";
   }
