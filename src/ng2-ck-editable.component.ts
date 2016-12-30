@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
     <div class="ck-editable-content">
       <button class="btn btn-primary ck-editable-edit" [hidden]="editing || data.value!==''" (click)="showCKEditor()">{{editText}}</button>
       <div [innerHTML]="data.value" [hidden]="editing" (click)="showCKEditor()"></div>
-      <div #CKEditableContentTemplate [config]="config"></div>
+      <div #CKEditableContentTemplate></div>
     </div>
     `,
 })
@@ -25,7 +25,7 @@ export class Ng2CKEditableComponent implements OnInit {
   @Input('save-text') saveText: string;
   @Input('cancel-text') cancelText: string;
   @Input('edit-text') editText: string;
-  @Input('config') config: any;
+  @Input('config') config: any={};
 
   @Output('ck-editable') output: EventEmitter<any> = new EventEmitter();
 
@@ -59,6 +59,7 @@ export class Ng2CKEditableComponent implements OnInit {
     let CKEditorFactory = this.cfr.resolveComponentFactory(CKEditorComponent);
     this.CKEditorCmp = this.CKEditableContent.createComponent(CKEditorFactory);
     this.CKEditorCmp.instance.value = this.data.value;
+    this.CKEditorCmp.instance.config=this.config;
   }
   cancel(): void {
     this.editing = false;
