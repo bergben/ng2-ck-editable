@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { CKEditableData, CKEditableOptions } from './ng2-ck-editable.interface';
@@ -21,7 +21,7 @@ import { Subscription } from 'rxjs';
     </div>
     `,
 })
-export class Ng2CKEditableComponent implements OnInit {
+export class Ng2CKEditableComponent implements OnInit, OnChanges {
   @Input('ck-editable') data: CKEditableData;
   @Input('save-text') saveText: string;
   @Input('cancel-text') cancelText: string;
@@ -60,6 +60,10 @@ export class Ng2CKEditableComponent implements OnInit {
     }
     this.CKEditableContentElement = this.CKEditableContent.element.nativeElement;
     this.CKEditableContentElement.style.cursor = "text";
+  }
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+    // changes.prop contains the old and the new value...
   }
   showCKEditor(): void {
     this.originalData = Object.assign({}, this.data);
