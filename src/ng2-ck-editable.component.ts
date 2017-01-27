@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
     </div>
     <div class="ck-editable-content">
       <button class="btn btn-primary ck-editable-edit" [hidden]="editing || data.value!==''" (click)="showCKEditor()">{{editText}}</button>
-      <div [innerHTML]="data.value" [hidden]="editing" (click)="showCKEditor()"></div>
+      <div [innerHTML]="data.renderHtml" [hidden]="editing" (click)="showCKEditor()"></div>
       <div #CKEditableContentTemplate></div>
     </div>
     `,
@@ -40,7 +40,11 @@ export class Ng2CKEditableComponent implements OnInit {
   }
   ngOnInit() {
     if (typeof (this.data.value) !== "string") {
-      this.data.value = this.sanitizer.bypassSecurityTrustHtml(this.CKEditableNgContent.element.nativeElement.innerHTML);
+      this.data.value = this.CKEditableNgContent.element.nativeElement.innerHTML;
+      this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.CKEditableNgContent.element.nativeElement.innerHTML);
+    }
+    else{
+      this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.data.value);
     }
     if (this.saveText === "" || this.saveText === undefined) {
       this.saveText = this.defaultOptions.saveText;
@@ -68,11 +72,13 @@ export class Ng2CKEditableComponent implements OnInit {
   cancel(): void {
     this.editing = false;
     this.data = this.originalData;
+    this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.data.value);
     this.CKEditableContent.clear();
   }
   save(): void {
     this.editing = false;
-    this.data.value = this.sanitizer.bypassSecurityTrustHtml(this.CKEditorCmp.instance.value);
+    this.data.value = this.CKEditorCmp.instance.value;
+    this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.CKEditorCmp.instance.value);
     this.output.emit({ "current": this.data, "previous": this.originalData });
     this.CKEditableContent.clear();
   }
