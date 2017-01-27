@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
     </div>
     <div class="ck-editable-content">
       <button class="btn btn-primary ck-editable-edit" [hidden]="editing || data.value!==''" (click)="showCKEditor()">{{editText}}</button>
-      <div [innerHTML]="getSafeData(data.value)" [hidden]="editing" (click)="showCKEditor()"></div>
+      <div [innerHTML]="getSafeHtml(data.value)" [hidden]="editing" (click)="showCKEditor()"></div>
       <div #CKEditableContentTemplate></div>
     </div>
     `,
