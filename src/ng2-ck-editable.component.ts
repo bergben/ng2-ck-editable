@@ -61,9 +61,9 @@ export class Ng2CKEditableComponent implements OnInit, OnChanges {
     this.CKEditableContentElement = this.CKEditableContent.element.nativeElement;
     this.CKEditableContentElement.style.cursor = "text";
   }
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
-    // changes.prop contains the old and the new value...
+  ngOnChanges(changes: SimpleChanges | any) {
+    this.data.value=changes.data.currentValue.value;
+    this.data.renderHtml=this.sanitizer.bypassSecurityTrustHtml(changes.data.currentValue.value);
   }
   showCKEditor(): void {
     this.originalData = Object.assign({}, this.data);
