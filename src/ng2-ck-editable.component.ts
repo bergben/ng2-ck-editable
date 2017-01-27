@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { CKEditableData, CKEditableOptions } from './ng2-ck-editable.interface';
 import { Subscription } from 'rxjs';
@@ -16,12 +16,12 @@ import { Subscription } from 'rxjs';
     </div>
     <div class="ck-editable-content">
       <button class="btn btn-primary ck-editable-edit" [hidden]="editing || data.value!==''" (click)="showCKEditor()">{{editText}}</button>
-      <div [innerHTML]="data.renderHtml" [hidden]="editing" (click)="showCKEditor()"></div>
+      <div [innerHTML]="getSafeData(data.value)" [hidden]="editing" (click)="showCKEditor()"></div>
       <div #CKEditableContentTemplate></div>
     </div>
     `,
 })
-export class Ng2CKEditableComponent implements OnInit, OnChanges {
+export class Ng2CKEditableComponent implements OnInit {
   @Input('ck-editable') data: CKEditableData;
   @Input('save-text') saveText: string;
   @Input('cancel-text') cancelText: string;
@@ -41,10 +41,6 @@ export class Ng2CKEditableComponent implements OnInit, OnChanges {
   ngOnInit() {
     if (typeof (this.data.value) !== "string") {
       this.data.value = this.CKEditableNgContent.element.nativeElement.innerHTML;
-      this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.CKEditableNgContent.element.nativeElement.innerHTML);
-    }
-    else{
-      this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.data.value);
     }
     if (this.saveText === "" || this.saveText === undefined) {
       this.saveText = this.defaultOptions.saveText;
@@ -61,9 +57,8 @@ export class Ng2CKEditableComponent implements OnInit, OnChanges {
     this.CKEditableContentElement = this.CKEditableContent.element.nativeElement;
     this.CKEditableContentElement.style.cursor = "text";
   }
-  ngOnChanges(changes: SimpleChanges | any) {
-    this.data.value=changes.data.currentValue.value;
-    this.data.renderHtml=this.sanitizer.bypassSecurityTrustHtml(changes.data.currentValue.value);
+  getSafeHtml(value):SafeHtml{
+    return this.sanitizer.bypassSecurityTrustHtml(value);
   }
   showCKEditor(): void {
     this.originalData = Object.assign({}, this.data);
@@ -76,13 +71,11 @@ export class Ng2CKEditableComponent implements OnInit, OnChanges {
   cancel(): void {
     this.editing = false;
     this.data = this.originalData;
-    this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.data.value);
     this.CKEditableContent.clear();
   }
   save(): void {
     this.editing = false;
     this.data.value = this.CKEditorCmp.instance.value;
-    this.data.renderHtml = this.sanitizer.bypassSecurityTrustHtml(this.CKEditorCmp.instance.value);
     this.output.emit({ "current": this.data, "previous": this.originalData });
     this.CKEditableContent.clear();
   }
