@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Ng2CKEditableComponent } from './ng2-ck-editable.component';
 import { CKEditableOptions, CKEditableOptionsInterface } from './ng2-ck-editable.interface';
 import { CKEditorModule, CKEditorComponent } from 'ng2-ckeditor';
+import { BrowserModule } from '@angular/platform-browser';
 
 export const USER_OPTIONS: OpaqueToken = new OpaqueToken('ck editable custom user options');
 
@@ -15,7 +16,8 @@ export function optionsFactory(userOptions: CKEditableOptions): CKEditableOption
 @NgModule({
   imports: [
     CKEditorModule,
-    CommonModule
+    CommonModule,
+    BrowserModule
   ],
   entryComponents: [
     CKEditorComponent

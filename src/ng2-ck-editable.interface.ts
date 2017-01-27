@@ -1,6 +1,7 @@
+import { SafeHtml } from '@angular/platform-browser';
 export interface CKEditableData{
     key:string;
-    value?:string;
+    value?:string | SafeHtml;
     [propName: string]: any;
 }
 export interface CKEditableOptionsInterface{

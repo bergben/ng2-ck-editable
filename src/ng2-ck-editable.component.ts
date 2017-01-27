@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { CKEditableData, CKEditableOptions } from './ng2-ck-editable.interface';
 import { Subscription } from 'rxjs';
@@ -35,11 +36,11 @@ export class Ng2CKEditableComponent implements OnInit {
   CKEditableContentElement: any;
   CKEditorCmp: ComponentRef<any>;
   editing: Boolean = false;
-  constructor(private el: ElementRef, private cfr: ComponentFactoryResolver, private defaultOptions: CKEditableOptions) {
+  constructor(private el: ElementRef, private cfr: ComponentFactoryResolver, private defaultOptions: CKEditableOptions, private sanitizer: DomSanitizer) {
   }
   ngOnInit() {
     if (typeof (this.data.value) !== "string") {
-      this.data.value = this.CKEditableNgContent.element.nativeElement.innerHTML;
+      this.data.value = this.sanitizer.bypassSecurityTrustHtml(this.CKEditableNgContent.element.nativeElement.innerHTML);
     }
     if (this.saveText === "" || this.saveText === undefined) {
       this.saveText = this.defaultOptions.saveText;
@@ -71,7 +72,7 @@ export class Ng2CKEditableComponent implements OnInit {
   }
   save(): void {
     this.editing = false;
-    this.data.value = this.CKEditorCmp.instance.value;
+    this.data.value = this.sanitizer.bypassSecurityTrustHtml(this.CKEditorCmp.instance.value);
     this.output.emit({ "current": this.data, "previous": this.originalData });
     this.CKEditableContent.clear();
   }
