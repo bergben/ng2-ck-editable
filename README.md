@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/bergben/bergben](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/bergben/bergben?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 # ng2-ck-editable
 Angular 2 directive to make any div editable using a CKEditor. The main idea is to make key-value pairs editable.
 
