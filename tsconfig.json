@@ -1,20 +1,31 @@
 {
-    "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "emitDecoratorMetadata": true,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "declaration": true,
     "experimentalDecorators": true,
-    "sourceMap": false,
-    "outDir": "build",
+    "module": "es2015",
     "moduleResolution": "node",
-    "declaration": true
+    "paths": {
+      "@angular/core": ["node_modules/@angular/core"],
+      "@angular/platform-browser": ["node_modules/@angular/platform-browser"],
+      "rxjs": ["node_modules/rxjs"],
+      "ng2-ckeditor": ["node_modules/ng2-ckeditor"]
+    },
+    "rootDir": ".",
+    "outDir": "dist",
+    "sourceMap": true,
+    "inlineSources": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "lib": [
+      "es2015", 
+      "dom"
+    ]
   },
-  "include": [
-    "./ng2-ck-editable.ts",
-      "src/**/*"
+  "files": [
+    "ng2-ck-editable.ts"
   ],
-  "exclude": [
-      "node_modules",
-      "**/*.spec.ts"
-  ]
+  "angularCompilerOptions": {
+    "strictMetadataEmit": true
+  }
 }

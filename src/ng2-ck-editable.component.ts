@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, Output, OnInit, ComponentFactoryResolver, ViewContainerRef, ComponentRef, ViewChild, EventEmitter, Inject, forwardRef } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CKEditorComponent } from 'ng2-ckeditor';
 import { CKEditableData, CKEditableOptions } from './ng2-ck-editable.interface';
@@ -36,7 +36,10 @@ export class Ng2CKEditableComponent implements OnInit {
   CKEditableContentElement: any;
   CKEditorCmp: ComponentRef<any>;
   editing: Boolean = false;
-  constructor(private el: ElementRef, private cfr: ComponentFactoryResolver, private defaultOptions: CKEditableOptions, private sanitizer: DomSanitizer) {
+  constructor(@Inject(forwardRef(() => ElementRef)) private el: ElementRef, 
+              @Inject(forwardRef(() => ComponentFactoryResolver)) private cfr: ComponentFactoryResolver, 
+              @Inject(forwardRef(() => CKEditableOptions)) private defaultOptions: CKEditableOptions, 
+              @Inject(forwardRef(() => DomSanitizer)) private sanitizer: DomSanitizer) {
   }
   ngOnInit() {
     if (typeof (this.data.value) !== "string") {

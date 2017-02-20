@@ -1,5 +1,4 @@
 import { NgModule, ModuleWithProviders, OpaqueToken } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Ng2CKEditableComponent } from './ng2-ck-editable.component';
 import { CKEditableOptions, CKEditableOptionsInterface } from './ng2-ck-editable.interface';
 import { CKEditorModule, CKEditorComponent } from 'ng2-ckeditor';
@@ -16,7 +15,6 @@ export function optionsFactory(userOptions: CKEditableOptions): CKEditableOption
 @NgModule({
   imports: [
     CKEditorModule,
-    CommonModule,
     BrowserModule
   ],
   entryComponents: [
@@ -27,7 +25,6 @@ export function optionsFactory(userOptions: CKEditableOptions): CKEditableOption
 })
 export class Ng2CKEditableModule {
   static forRoot(options: CKEditableOptionsInterface = {}): ModuleWithProviders {
-
     return {
       ngModule: Ng2CKEditableModule,
       providers: [{
